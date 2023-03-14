@@ -1,0 +1,11 @@
+# Django 실행
+python manage.py runserver
+
+# 마이그레이션
+python manage.py makemigrations
+python manage.py migrate
+
+# 슈퍼어드민 생성
+python manage.py createsuperuser
+
+# 파일기반 DB : sqlite
