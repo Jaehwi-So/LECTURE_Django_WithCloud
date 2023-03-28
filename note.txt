@@ -9,3 +9,13 @@ python manage.py migrate
 python manage.py createsuperuser
 
 # 파일기반 DB : sqlite
+
+# Git
+- git add .
+- git commit -m "commit massage"
+- git push
+
+# settings.py
+- INSTALLED_APPS : 만든 앱 목록 -> 블로그나 자기소개 서비스를 만든다면 해당 부분에 추가해주어야겠지
+    * run manage.py (python manage.py startapp blog)
+-
