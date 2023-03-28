@@ -1,6 +1,22 @@
+import os
+
 from django.db import models
 
 class Post(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField()
-    created_at = models.DateTimeField()
+
+    #가로세로 포멧, 저장 위치 등을 지정할 수 있다.
+    head_image = models.ImageField(upload_to='blog/images/%Y/%m/%d/', blank=True)
+    file_upload = models.FileField(upload_to='blog/files/%Y/%m/%d/', blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'[{self.pk}] {self.title}'
+
+    def get_absolute_url(self):
+        return f'/blog/{self.pk}'
+
+    def get_file_name(self):
+        return os.path.basename(self.file_upload.name)
