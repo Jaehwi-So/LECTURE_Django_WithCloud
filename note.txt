@@ -27,3 +27,12 @@ python manage.py createsuperuser
 static path : 클라이언트가 서버의 자원에 접근 가능하도록 하는 경로
 media path : 클라이언트가 업로드하는 위치를 지정
 path.join을 사용하는 이유는 OS에 따른 경로 규칙이 다르기 때문에 통일시키기 위함
+
+
+
+# User를 연결할 때 마이그레이션 문제
+유저가 연결되어 있지 않은 포스트에 대해서 처리가 문제
+It is impossible to add a non-nullable field 'author' to post without specifying a default. This is because the database needs something to populate existing rows.
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit and manually define a default value in models.py.
