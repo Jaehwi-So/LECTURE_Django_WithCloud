@@ -36,3 +36,7 @@ It is impossible to add a non-nullable field 'author' to post without specifying
 Please select a fix:
  1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
  2) Quit and manually define a default value in models.py.
+
+
+# 카테고리 추가
+모델 작성 후 admin.py에 신규 모델 등록
