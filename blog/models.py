@@ -13,9 +13,21 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return f'/blog/category/{self.slug}'
+
     #카테고리의 관리자페이지에서 보여지는 복수형 수정 (Categorys 불편..)
     class Meta:
         verbose_name_plural = 'Categories'
+
+#태그 : 포스트 = N:M
+class Tag(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
+    def __str__(self):
+        return self.name
+    def get_absolute_url(self):
+        return f'/blog/tag/{self.slug}'
 
 
 class Post(models.Model):
@@ -32,8 +44,12 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)  #파라미터로 함수를 넘겨주는 것(콜백함수), ()를 붙여 실행하지는 않음
 #   author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)  #Null을 허용, 연관 유저 삭제 시 null로
 
-    # 카테고리 관계 (N : 1), blank=True는 유효성 검사에서 공란허용
+    # 카테고리 관계 (N : 1), blank=True는 유효성 검사에서 공란허용(프론트->백엔드 요청시)
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
+
+    # 태그 관계 (N : M), 태그에서 포스트를 레퍼런스할일이 없다면 한 쪽에만 작성하면 됨
+    #ManyToMany는 null=True가 자동
+    tags = models.ManyToManyField(Tag, blank=True)
     def __str__(self):
         return f'[{self.pk}] {self.title} - {self.author}'
 

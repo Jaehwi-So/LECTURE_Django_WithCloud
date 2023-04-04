@@ -34,7 +34,16 @@
         <hr>
 
         <!-- Post Content -->
-        <p>{{ p.content }}</p>
+        <p>{{ post.content }}</p>
+        {% if post.tags.exists %}
+            <hr>
+            <i class="fas fa-tags">
+                <!-- 태그의 타입에 영향을 받지 않기 위해서 이터레이터 사용-->
+                {% for tag in post.tags.iterator %}
+                    <a href="{{ tag.get_absolute_url }}">#{{ tag }}</a>
+                {% endfor %}
+            </i>
+        {% endif %}
         <hr>
 
         <!-- Comments Form -->

@@ -18,7 +18,7 @@
                 {% endif %}
 
                 <div class="card-body">
-                    <h2 class="card-title">{{ p.title}}</h2>
+                    <h2 class="card-title">[{{ p.category }}] {{ p.title}}</h2>
                     <p class="card-text">{{ p.content | truncatewords:10 }}</p>
 
                     {% if p.file_upload %}

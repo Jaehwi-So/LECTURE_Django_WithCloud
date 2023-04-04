@@ -40,3 +40,4 @@ Please select a fix:
 
 # 카테고리 추가
 모델 작성 후 admin.py에 신규 모델 등록
+View Template에 카테고리 모델을 전달하려면? -> views.py 수정
