@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block main_area %}
+    <h1>Create New Post</h1><hr>
+    <!--
+        Method는 Post, enctype은 multipart/form-data, csrf_token은 요청 신뢰성 보장을 위한 값
+
+    -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- <input type="hidden"; name="csrfmiddlewaretoken" value="dwjkqbxjkavjhxbjwbj; ... >-->
+        <table style="margin:auto">
+            {{ form | crispy }}
+            <tr>
+                <td><button type="submit" class="btn btn-danger">등록</button></td>
+            </tr>
+        </table>
+
+
+    </form>
+    {{ form.media }}
+    <hr>
+{% endblock %}

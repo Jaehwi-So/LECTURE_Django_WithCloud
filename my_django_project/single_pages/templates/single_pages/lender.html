@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Landing</h1>
+    <a href="/blog">블로그 가기</a>
+    {% for p in posts %}
+    <!-- Blog Post -->
+        <div class="card mb-4">
+            {% if p.head_image %}
+                <img class="card-img-top" src="{{p.head_image.url}}" alt="Card image cap">
+            {% else %}
+                <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+            {% endif %}
+
+            <div class="card-body">
+                <h2 class="card-title">[{{ p.category }}] {{ p.title}}</h2>
+                  <p class="card-text">{{ p.get_content_markdown | truncatewords_html:30 | safe }}</p>
+                <a href="{{ p.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+                Posted on {{ p.created_at}} by
+                <a href="#">{{ p.author }}</a>
+            </div>
+        </div>
+    {% endfor %}
+</body>
+</html>
