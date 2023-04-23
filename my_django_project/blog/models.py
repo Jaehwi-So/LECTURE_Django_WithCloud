@@ -84,3 +84,5 @@ class Comment(models.Model):
         return f'{self.post.get_absolute_url()}#comment-{self.pk}'
 
 
+class Test(models.Model):
+    content = models.TextField()

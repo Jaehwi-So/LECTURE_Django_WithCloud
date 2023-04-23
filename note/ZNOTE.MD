@@ -122,6 +122,14 @@ class PostList(ListView):
     # render시 아래의 별도 설정이 없을 시 경로는 post_list.html, 모델은 자동으로 post_list로 할당됨
     template_name = 'blog/post_list.html'   #템플릿 설정
 ```
+
+#### Context 추가
+```python
+    def get_context_data(self, **kwargs):
+        context = super(PostDetail, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        return context
+```
 ### 3. Model Query
 - SELECT ONE : Tag.objects.get(slug = slug)
 - SELECT LIST : Post.objects.filter(category = category)
@@ -187,6 +195,14 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('content',)   #입력
+```
+### 2. views.py에서 사용하기
+```python
+    def get_context_data(self, **kwargs):
+        context = super(PostDetail, self).get_context_data()
+        context['comment_form'] = CommentForm
+        return context
+    
 ```
 
 # 템플릿 문법
